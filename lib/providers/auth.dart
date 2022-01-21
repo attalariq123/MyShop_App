@@ -100,7 +100,6 @@ class Auth with ChangeNotifier {
       _autoLogout();
       return true;
     } catch (e) {
-      print(e);
       throw e;
     }
   }
