@@ -59,47 +59,48 @@ class _OrdersScreenState extends State<OrdersScreen> {
                   );
                 } else {
                   return Consumer<Orders>(
-                      builder: (ctx, orderData, child) =>
-                          orderData.orders.isNotEmpty
-                              ? ListView.builder(
-                                  physics: const BouncingScrollPhysics(),
-                                  itemCount: orderData.orders.length,
-                                  itemBuilder: (ctx, i) => OrderItem(
-                                    orderData.orders[i],
-                                  ),
-                                )
-                              : Container(
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      const Icon(
-                                        Icons.shopping_bag_outlined,
-                                        color: Colors.deepOrangeAccent,
-                                        size: 70,
+                    builder: (ctx, orderData, child) =>
+                        orderData.orders.isNotEmpty
+                            ? ListView.builder(
+                                physics: const BouncingScrollPhysics(),
+                                itemCount: orderData.orders.length,
+                                itemBuilder: (ctx, i) => OrderItem(
+                                  orderData.orders[i],
+                                ),
+                              )
+                            : Container(
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    const Icon(
+                                      Icons.shopping_bag_outlined,
+                                      color: Colors.deepOrangeAccent,
+                                      size: 70,
+                                    ),
+                                    const Divider(
+                                      thickness: 0,
+                                      color: Colors.transparent,
+                                    ),
+                                    Center(
+                                      child: Text(
+                                        'Sorry, you don\'t have an order',
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .headline4!
+                                            .copyWith(
+                                              fontSize: 16,
+                                              letterSpacing: 0.5,
+                                              fontWeight: FontWeight.w500,
+                                              color: Colors.black87,
+                                            ),
+                                        softWrap: true,
+                                        textAlign: TextAlign.center,
                                       ),
-                                      const Divider(
-                                        thickness: 0,
-                                        color: Colors.transparent,
-                                      ),
-                                      Center(
-                                        child: Text(
-                                          'Sorry, you don\'t have an order',
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .headline4!
-                                              .copyWith(
-                                                fontSize: 16,
-                                                letterSpacing: 0.5,
-                                                fontWeight: FontWeight.w500,
-                                                color: Colors.black87,
-                                              ),
-                                          softWrap: true,
-                                          textAlign: TextAlign.center,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ));
+                                    ),
+                                  ],
+                                ),
+                              ),
+                  );
                 }
               }
             }));

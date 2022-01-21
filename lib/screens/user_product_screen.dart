@@ -42,34 +42,66 @@ class UserProductScreen extends StatelessWidget {
       drawer: AppDrawer(),
       body: FutureBuilder(
         future: _refreshProduct(context),
-        builder: (ctx, snapshot) =>
-            snapshot.connectionState == ConnectionState.waiting
-                ? Center(
-                    child: CircularProgressIndicator.adaptive(
-                      strokeWidth: 3.5,
-                    ),
-                  )
-                : Consumer<ProductsProvider>(
-                    builder: (ctx, productsData, _) => Padding(
-                      padding: const EdgeInsets.all(8),
-                      child: RefreshIndicator(
-                        onRefresh: () => _refreshProduct(context),
-                        child: ListView.builder(
-                          itemCount: productsData.items.length,
-                          itemBuilder: (_, i) => Column(
-                            children: [
-                              UserProductItem(
-                                productsData.items[i].id,
-                                productsData.items[i].title,
-                                productsData.items[i].imageUrl,
-                              ),
-                              Divider(),
-                            ],
+        builder: (ctx, snapshot) => snapshot.connectionState ==
+                ConnectionState.waiting
+            ? Center(
+                child: CircularProgressIndicator.adaptive(
+                  strokeWidth: 3.5,
+                ),
+              )
+            : Consumer<ProductsProvider>(
+                builder: (ctx, productsData, _) => productsData.items.isNotEmpty
+                    ? Padding(
+                        padding: const EdgeInsets.all(8),
+                        child: RefreshIndicator(
+                          onRefresh: () => _refreshProduct(context),
+                          child: ListView.builder(
+                            itemCount: productsData.items.length,
+                            itemBuilder: (_, i) => Column(
+                              children: [
+                                UserProductItem(
+                                  productsData.items[i].id,
+                                  productsData.items[i].title,
+                                  productsData.items[i].imageUrl,
+                                ),
+                                Divider(),
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                    ),
-                  ),
+                      )
+                    : Container(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const Icon(
+                              Icons.inventory_rounded,
+                              color: Colors.deepOrangeAccent,
+                              size: 70,
+                            ),
+                            const Divider(
+                              thickness: 0,
+                              color: Colors.transparent,
+                            ),
+                            Center(
+                              child: Text(
+                                'Sorry, you don\'t have any product',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .headline4!
+                                    .copyWith(
+                                      fontSize: 16,
+                                      letterSpacing: 0.5,
+                                      fontWeight: FontWeight.w500,
+                                      color: Colors.black87,
+                                    ),
+                                softWrap: true,
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                          ],
+                        ),
+                      )),
       ),
     );
   }
