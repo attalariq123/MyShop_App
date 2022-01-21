@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shop_app/providers/cart.dart';
@@ -45,7 +47,7 @@ class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'MyShop',
+          'TaniKu',
           style: Theme.of(context).textTheme.headline4!.copyWith(
                 fontSize: 26,
                 letterSpacing: 0.8,

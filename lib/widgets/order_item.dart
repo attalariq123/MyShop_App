@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
@@ -23,6 +25,7 @@ class _OrderItemState extends State<OrderItem> {
         ' item${widget.order.itemQty == 1 ? '' : 's'}';
     final int orderLength = widget.order.products.length;
     final double containerSize = orderLength == 1 ? 58 : 112;
+    final formatter = NumberFormat.simpleCurrency(locale: "id_ID", decimalDigits: 0);
     return Dismissible(
       key: ValueKey(widget.order.id),
       direction: DismissDirection.endToStart,
@@ -71,7 +74,7 @@ class _OrderItemState extends State<OrderItem> {
           children: [
             ListTile(
               title: Text(
-                '\$${(widget.order.amount).toStringAsFixed(2)} /  $quantityLabel',
+                '${formatter.format(widget.order.amount).toString()} /  $quantityLabel',
                 style: Theme.of(context).textTheme.bodyText1!.copyWith(
                       fontSize: 14,
                       letterSpacing: 0.8,
@@ -156,7 +159,7 @@ class _OrderItemState extends State<OrderItem> {
                             Container(
                               width: 80,
                               child: Text(
-                                ' \$${prod.price}',
+                                formatter.format(prod.price).toString(),
                                 overflow: TextOverflow.ellipsis,
                                 textAlign: TextAlign.end,
                                 softWrap: true,

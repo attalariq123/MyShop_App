@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:shop_app/constant.dart';
 import 'package:shop_app/providers/cart.dart';
@@ -14,6 +15,8 @@ class ProductDetailScreen extends StatelessWidget {
         .findById(productId);
     final cart = Provider.of<Cart>(context, listen: false);
     final priceLen = loadedProducts.price.toString().length;
+    final formatter =
+        NumberFormat.simpleCurrency(locale: "id_ID", decimalDigits: 0);
     return Scaffold(
       body: CustomScrollView(
         slivers: [
@@ -60,10 +63,10 @@ class ProductDetailScreen extends StatelessWidget {
                           loadedProducts.title,
                           style:
                               Theme.of(context).textTheme.bodyText1!.copyWith(
-                                    fontSize: 18,
+                                    fontSize: 24,
                                     letterSpacing: 0.8,
                                     fontWeight: FontWeight.w800,
-                                    color: Colors.black87,
+                                    color: colorCustom,
                                   ),
                           softWrap: true,
                           overflow: TextOverflow.ellipsis,
@@ -73,7 +76,7 @@ class ProductDetailScreen extends StatelessWidget {
                       Container(
                           width: MediaQuery.of(context).size.width * 0.35,
                           child: Text(
-                            '\$${loadedProducts.price.toStringAsFixed(2)}',
+                            formatter.format(loadedProducts.price).toString(),
                             style:
                                 Theme.of(context).textTheme.bodyText1!.copyWith(
                                       fontSize: 18,

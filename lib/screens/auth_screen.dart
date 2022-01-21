@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shop_app/constant.dart';
@@ -17,7 +15,7 @@ class AuthScreen extends StatelessWidget {
     // final transformConfig = Matrix4.rotationZ(-8 * pi / 180);
     // transformConfig.translate(-10.0);
     return Scaffold(
-      // resizeToAvoidBottomInset: false,
+      // resizeToAvoidBottomInset: true,
       body: Stack(
         children: <Widget>[
           Container(
@@ -46,9 +44,8 @@ class AuthScreen extends StatelessWidget {
                       margin: EdgeInsets.only(bottom: 20.0),
                       padding:
                           EdgeInsets.symmetric(vertical: 8.0, horizontal: 94.0),
-                      transform: Matrix4.rotationZ(-8 * pi / 180)
-                        ..translate(-10.0),
-                      // ..translate(-10.0),
+                      // transform: Matrix4.rotationZ(-8 * pi / 180)
+                      //   ..translate(-10.0),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
                         color: Colors.black54,
@@ -61,7 +58,7 @@ class AuthScreen extends StatelessWidget {
                         ],
                       ),
                       child: Text(
-                        'MyShop',
+                        'TaniKu',
                         style: Theme.of(context).textTheme.headline4!.copyWith(
                               fontSize: 36,
                               letterSpacing: 1,
@@ -145,15 +142,15 @@ class _AuthCardState extends State<AuthCard>
         builder: (ctx) => AlertDialog(
               contentPadding: EdgeInsets.only(top: 8),
               titlePadding: EdgeInsets.only(top: 16),
-              backgroundColor: colorCustom,
+              backgroundColor: Colors.white,
               elevation: 8,
               title: Text(
-                'An Error Occured!',
+                'Terjadi kesalahan, coba lagi!',
                 style: Theme.of(context).textTheme.bodyText1!.copyWith(
                       fontSize: 16,
                       letterSpacing: 0.3,
                       fontWeight: FontWeight.w700,
-                      color: Colors.black87,
+                      color: colorCustom,
                     ),
                 textAlign: TextAlign.center,
               ),
@@ -171,12 +168,12 @@ class _AuthCardState extends State<AuthCard>
                 TextButton(
                     onPressed: () => Navigator.of(ctx).pop(),
                     child: Text(
-                      'Okay',
+                      'OK',
                       style: Theme.of(context).textTheme.bodyText1!.copyWith(
                             fontSize: 14,
                             letterSpacing: 0.3,
                             fontWeight: FontWeight.w800,
-                            color: Colors.black87,
+                            color: colorCustom,
                           ),
                       textAlign: TextAlign.center,
                     ))
@@ -338,6 +335,8 @@ class _AuthCardState extends State<AuthCard>
                         validator: _authMode == AuthMode.Signup
                             ? (value) {
                                 if (value != _passwordController.text) {
+                                  print(_passwordController.text);
+                                  print(value);
                                   return 'Passwords do not match!';
                                 }
                               }

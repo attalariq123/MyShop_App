@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shop_app/constant.dart';
@@ -5,7 +7,6 @@ import 'package:shop_app/providers/auth.dart';
 import 'package:shop_app/providers/cart.dart';
 import 'package:shop_app/providers/product.dart';
 import 'package:shop_app/screens/product_detail_screen.dart';
-
 
 class ProductItem extends StatelessWidget {
   @override
@@ -63,7 +64,7 @@ class ProductItem extends StatelessWidget {
               style: Theme.of(context).textTheme.bodyText1!.copyWith(
                     fontSize: 14,
                     fontWeight: FontWeight.w500,
-                    color: colorCustom,
+                    color: Colors.white,
                   ),
             ),
             trailing: Container(
@@ -80,9 +81,7 @@ class ProductItem extends StatelessWidget {
                   onPressed: () {
                     cart.addItem(product.id, product.title, product.price,
                         product.imageUrl);
-
                     ScaffoldMessenger.of(context).hideCurrentSnackBar();
-
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
                         content: Text(

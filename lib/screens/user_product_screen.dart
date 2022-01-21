@@ -22,7 +22,7 @@ class UserProductScreen extends StatelessWidget {
         title: Text(
           'Your Products',
           style: Theme.of(context).textTheme.headline4!.copyWith(
-                fontSize: 22,
+                fontSize: 26,
                 letterSpacing: 0.8,
                 fontWeight: FontWeight.w900,
                 color: Colors.black87,
@@ -50,7 +50,7 @@ class UserProductScreen extends StatelessWidget {
                     ),
                   )
                 : Consumer<ProductsProvider>(
-                  builder: (ctx, productsData, _) => Padding(
+                    builder: (ctx, productsData, _) => Padding(
                       padding: const EdgeInsets.all(8),
                       child: RefreshIndicator(
                         onRefresh: () => _refreshProduct(context),
@@ -69,7 +69,7 @@ class UserProductScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-                ),
+                  ),
       ),
     );
   }

@@ -31,11 +31,11 @@ class _OrdersScreenState extends State<OrdersScreen> {
     print('build orders');
     return Scaffold(
         appBar: AppBar(
-          iconTheme: IconThemeData(color: Colors.black),
+          // iconTheme: IconThemeData(color: Colors.black),
           title: Text(
             'Your Orders',
             style: Theme.of(context).textTheme.headline4!.copyWith(
-                  fontSize: 22,
+                  fontSize: 26,
                   letterSpacing: 0.8,
                   fontWeight: FontWeight.w900,
                   color: Colors.black87,

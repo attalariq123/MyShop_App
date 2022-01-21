@@ -1,3 +1,4 @@
+// ignore_for_file: deprecated_member_use
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
@@ -8,14 +9,13 @@ import 'package:shop_app/helpers/custom_route.dart';
 import 'package:shop_app/providers/auth.dart';
 import 'package:shop_app/providers/cart.dart';
 import 'package:shop_app/providers/orders.dart';
-// import 'package:shop_app/providers/product.dart';
-import 'package:shop_app/screens/auth_screen.dart';
 import 'package:shop_app/screens/cart_screen.dart';
 import 'package:shop_app/screens/edit_product_screen.dart';
+import 'package:shop_app/screens/login_screen.dart';
 import 'package:shop_app/screens/orders_screen.dart';
 import 'package:shop_app/screens/product_detail_screen.dart';
-// import 'package:shop_app/screens/product_detail_screen.dart';
 import 'package:shop_app/screens/products_overview_screen.dart';
+import 'package:shop_app/screens/signUp_screen.dart';
 import 'package:shop_app/screens/splash_screen.dart';
 import 'package:shop_app/screens/user_product_screen.dart';
 import './providers/products_provider.dart';
@@ -59,6 +59,14 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             primarySwatch: colorCustom,
             accentColor: Colors.deepOrangeAccent,
+            appBarTheme: AppBarTheme(
+              titleTextStyle: Theme.of(context).textTheme.headline4!.copyWith(
+                    fontSize: 26,
+                    letterSpacing: 0.8,
+                    fontWeight: FontWeight.w900,
+                    color: Colors.black87,
+                  ),
+            ),
             textTheme: GoogleFonts.montserratTextTheme(),
             pageTransitionsTheme: PageTransitionsTheme(
               builders: {
@@ -75,13 +83,15 @@ class MyApp extends StatelessWidget {
                   builder: (ctx, authSnapshot) =>
                       authSnapshot.connectionState == ConnectionState.waiting
                           ? SplashScreen()
-                          : AuthScreen()),
+                          : LoginTest(),
+                ),
           routes: {
             ProductDetailScreen.routeName: (ctx) => ProductDetailScreen(),
             CartScreen.routeName: (ctx) => CartScreen(),
             OrdersScreen.routeName: (ctx) => OrdersScreen(),
             UserProductScreen.routeName: (ctx) => UserProductScreen(),
             EditProductScreen.routeName: (ctx) => EditProductScreen(),
+            SignUpTest.routeName: (ctx) => SignUpTest(),
           },
         ),
       ),

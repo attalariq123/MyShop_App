@@ -140,11 +140,11 @@ class _EditProductScreenState extends State<EditProductScreen> {
         title: Text(
           'Edit Product',
           style: Theme.of(context).textTheme.headline4!.copyWith(
-                fontSize: 22,
-                letterSpacing: 0.8,
-                fontWeight: FontWeight.w900,
-                color: Colors.black87,
-              ),
+                  fontSize: 26,
+                  letterSpacing: 0.8,
+                  fontWeight: FontWeight.w900,
+                  color: Colors.black87,
+                ),
         ),
         centerTitle: true,
         actions: [

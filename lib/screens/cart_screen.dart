@@ -1,4 +1,7 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:shop_app/providers/cart.dart';
 import 'package:shop_app/providers/orders.dart';
@@ -12,7 +15,11 @@ class CartScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cart = Provider.of<Cart>(context);
-    final double taxes = cart.totalAmount * (5 / 100);
+    final double shipping =
+        cart.totalAmount > 50000 || cart.totalAmount == 0 ? 0 : 10000;
+    final formatter =
+        NumberFormat.simpleCurrency(locale: "id_ID", decimalDigits: 0);
+
     return Scaffold(
         appBar: AppBar(
           iconTheme: IconThemeData(color: Colors.black),
@@ -23,7 +30,7 @@ class CartScreen extends StatelessWidget {
           title: Text(
             'Your Cart',
             style: Theme.of(context).textTheme.headline4!.copyWith(
-                  fontSize: 22,
+                  fontSize: 26,
                   letterSpacing: 0.8,
                   fontWeight: FontWeight.w900,
                   color: Colors.black87,
@@ -59,7 +66,7 @@ class CartScreen extends StatelessWidget {
                         ),
                         Spacer(),
                         Text(
-                          '\$${cart.totalAmount.toStringAsFixed(2)}',
+                          formatter.format(cart.totalAmount).toString(),
                           style:
                               Theme.of(context).textTheme.bodyText1!.copyWith(
                                     fontSize: 14,
@@ -73,7 +80,7 @@ class CartScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          'Taxes :',
+                          'Shipping :',
                           style:
                               Theme.of(context).textTheme.bodyText1!.copyWith(
                                     fontSize: 14,
@@ -84,7 +91,9 @@ class CartScreen extends StatelessWidget {
                         ),
                         Spacer(),
                         Text(
-                          '\$${taxes.toStringAsFixed(2)}',
+                          shipping != 0
+                              ? formatter.format(shipping).toString()
+                              : 'Free',
                           style:
                               Theme.of(context).textTheme.bodyText1!.copyWith(
                                     fontSize: 14,
@@ -113,7 +122,9 @@ class CartScreen extends StatelessWidget {
                         ),
                         Spacer(),
                         Text(
-                          '\$${(cart.totalAmount + taxes).toStringAsFixed(2)}',
+                          formatter
+                              .format(cart.totalAmount + shipping)
+                              .toString(),
                           style:
                               Theme.of(context).textTheme.bodyText1!.copyWith(
                                     fontSize: 14,

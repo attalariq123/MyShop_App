@@ -1,7 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-// import 'package:shop_app/helpers/custom_route.dart';
 import 'package:shop_app/providers/auth.dart';
 import 'package:shop_app/screens/orders_screen.dart';
 import 'package:shop_app/screens/user_product_screen.dart';
@@ -16,33 +14,24 @@ class AppDrawer extends StatelessWidget {
         child: Column(
           children: [
             AppBar(
-              leading: Container(
-                margin: EdgeInsets.all(6),
-                child: ClipOval(
-                    child: Image.network(
-                  'https://images.unsplash.com/photo-1517849845537-4d257902454a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=375&q=80',
-                  fit: BoxFit.cover,
-                  width: 4,
-                  height: 4,
-                )),
-              ),
+              // leading: Text(''),
               title: Text(
-                'Hello Shoppers',
+                'Go Healthy Go Life',
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
                 style: Theme.of(context).textTheme.headline4!.copyWith(
                       fontSize: 18,
-                      letterSpacing: 0.8,
-                      fontWeight: FontWeight.w800,
+                      letterSpacing: 1.4,
+                      fontWeight: FontWeight.w900,
                       color: Colors.black87,
                     ),
               ),
-              // automaticallyImplyLeading: false,
+              automaticallyImplyLeading: false,
             ),
             ListTile(
-              leading: const Icon(
+              leading: Icon(
                 Icons.shopping_bag_outlined,
-                color: Colors.black87,
+                color: Theme.of(context).colorScheme.secondary,
                 size: 28,
               ),
               title: Text(
@@ -51,7 +40,7 @@ class AppDrawer extends StatelessWidget {
                       fontSize: 16,
                       letterSpacing: 0.8,
                       fontWeight: FontWeight.w600,
-                      color: Color(0xFFe0bf00),
+                      color: Colors.black87,
                     ),
               ),
               onTap: () {
@@ -60,9 +49,9 @@ class AppDrawer extends StatelessWidget {
             ),
             Divider(),
             ListTile(
-              leading: const Icon(
+              leading: Icon(
                 Icons.payment,
-                color: Colors.black87,
+                color: Theme.of(context).colorScheme.secondary,
                 size: 28,
               ),
               title: Text(
@@ -71,7 +60,7 @@ class AppDrawer extends StatelessWidget {
                       fontSize: 16,
                       letterSpacing: 0.8,
                       fontWeight: FontWeight.w600,
-                      color: Color(0xFFe0bf00),
+                      color: Colors.black87,
                     ),
               ),
               onTap: () {
@@ -81,9 +70,9 @@ class AppDrawer extends StatelessWidget {
             ),
             Divider(),
             ListTile(
-              leading: const Icon(
+              leading: Icon(
                 Icons.mode_edit_outline,
-                color: Colors.black87,
+                color: Theme.of(context).colorScheme.secondary,
                 size: 28,
               ),
               title: Text(
@@ -92,7 +81,7 @@ class AppDrawer extends StatelessWidget {
                       fontSize: 16,
                       letterSpacing: 0.8,
                       fontWeight: FontWeight.w600,
-                      color: Color(0xFFe0bf00),
+                      color: Colors.black87,
                     ),
               ),
               onTap: () {
@@ -102,9 +91,9 @@ class AppDrawer extends StatelessWidget {
             ),
             Divider(),
             ListTile(
-              leading: const Icon(
+              leading: Icon(
                 Icons.exit_to_app_rounded,
-                color: Colors.black87,
+                color: Theme.of(context).colorScheme.secondary,
                 size: 28,
               ),
               title: Text(
@@ -113,7 +102,7 @@ class AppDrawer extends StatelessWidget {
                       fontSize: 16,
                       letterSpacing: 0.8,
                       fontWeight: FontWeight.w600,
-                      color: Color(0xFFe0bf00),
+                      color: Colors.black87,
                     ),
               ),
               onTap: () {
@@ -121,6 +110,17 @@ class AppDrawer extends StatelessWidget {
                 Navigator.of(context).pushReplacementNamed('/');
                 Provider.of<Auth>(context, listen: false).logout();
               },
+            ),
+            const Spacer(),
+            Container(
+              height: 260,
+              width: 260,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: new AssetImage("assets/images/farmer_ccexpress.png"),
+                  fit: BoxFit.cover,
+                ),
+              ),
             ),
           ],
         ),

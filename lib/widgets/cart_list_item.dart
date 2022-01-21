@@ -1,10 +1,12 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 // import 'package:shop_app/constant.dart';
 import 'package:shop_app/providers/cart.dart';
 
 class CartListItem extends StatelessWidget {
-
   final CartItem cartItem;
   final String keyId;
 
@@ -12,6 +14,8 @@ class CartListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final formatter = NumberFormat.simpleCurrency(locale: "id_ID", decimalDigits: 0);
+
     return Dismissible(
       key: ValueKey(cartItem.id),
       direction: DismissDirection.endToStart,
@@ -58,7 +62,7 @@ class CartListItem extends StatelessWidget {
               // overflow: TextOverflow.ellipsis,
             ),
             subtitle: Text(
-              'Total : \$${(cartItem.price * cartItem.quantity).toStringAsFixed(2)}',
+              'Total : ${formatter.format(cartItem.price * cartItem.quantity).toString()}',
               style: Theme.of(context).textTheme.bodyText1!.copyWith(
                     fontSize: 12,
                     fontWeight: FontWeight.w400,
