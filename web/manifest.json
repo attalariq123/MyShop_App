@@ -1,21 +1,21 @@
 {
-    "name": "shop_app",
-    "short_name": "shop_app",
+    "name": "TaniKu - Go Healthy Go Life",
+    "short_name": "TaniKu",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "description": "TaniKu - Ayo majukan petani indonesia dengan digitalisasi",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
         {
-            "src": "icons/Icon-192.png",
+            "src": "icons/farmer_192.png",
             "sizes": "192x192",
             "type": "image/png"
         },
         {
-            "src": "icons/Icon-512.png",
+            "src": "icons/farmer_512.png",
             "sizes": "512x512",
             "type": "image/png"
         }
