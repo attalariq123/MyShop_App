@@ -67,7 +67,8 @@ class _LoginTestState extends State<LoginTest> {
               ),
               actions: [
                 TextButton(
-                    onPressed: () => Navigator.of(context, rootNavigator: true).pop(),
+                    onPressed: () =>
+                        Navigator.of(context, rootNavigator: true).pop(),
                     child: Text(
                       'OK',
                       style: Theme.of(context).textTheme.bodyText1!.copyWith(

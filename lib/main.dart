@@ -22,6 +22,9 @@ import './providers/products_provider.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setApplicationSwitcherDescription(
+    ApplicationSwitcherDescription(label: "TaniKu | Go Healthy Go Life"),
+  );
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
   ]).then((_) {
@@ -55,6 +58,7 @@ class MyApp extends StatelessWidget {
       ],
       child: Consumer<Auth>(
         builder: (ctx, auth, _) => MaterialApp(
+          title: "TaniKu - Go Healthy Go Life",
           debugShowCheckedModeBanner: false,
           theme: ThemeData(
             primarySwatch: colorCustom,
