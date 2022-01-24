@@ -29,7 +29,8 @@ class Auth with ChangeNotifier {
     return _userId;
   }
 
-  Future<void> _authenticate(String? email, String? password, String? urlSegment) async {
+  Future<void> _authenticate(
+      String? email, String? password, String? urlSegment) async {
     final url = Uri.parse(
         'https://identitytoolkit.googleapis.com/v1/accounts:$urlSegment?key=AIzaSyA2QcqcSqX60QSEq9f3V2wK8Hcqgaw1E08');
     try {
@@ -82,20 +83,24 @@ class Auth with ChangeNotifier {
     try {
       final prefs = await SharedPreferences.getInstance();
       if (!prefs.containsKey('userData')) {
+        await Future.delayed(Duration(seconds: 3));
         return false;
       }
-      final extractedUserData = json
-          .decode(prefs.getString('userData') as String) as Map<String, dynamic>;
+      final extractedUserData =
+          json.decode(prefs.getString('userData') as String)
+              as Map<String, dynamic>;
       // print(extractedUserData);
       final expiryDate =
           DateTime.parse(extractedUserData['expiryDate'] as String);
 
       if (expiryDate.isBefore(DateTime.now())) {
+        await Future.delayed(Duration(seconds: 3));
         return false;
       }
       _token = extractedUserData['token'] as String?;
       _userId = extractedUserData['userId'] as String?;
       _expiryDate = expiryDate;
+      await Future.delayed(Duration(seconds: 3));
       notifyListeners();
       _autoLogout();
       return true;
