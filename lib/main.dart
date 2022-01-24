@@ -1,8 +1,9 @@
 // ignore_for_file: deprecated_member_use
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
-
+import 'package:device_preview/device_preview.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shop_app/constant.dart';
 import 'package:shop_app/helpers/custom_route.dart';
@@ -28,7 +29,12 @@ void main() {
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
   ]).then((_) {
-    runApp(new MyApp());
+    runApp(
+      DevicePreview(
+        enabled: !kReleaseMode,
+        builder: (context) => new MyApp(),
+      ),
+    );
   });
 }
 
@@ -58,6 +64,9 @@ class MyApp extends StatelessWidget {
       ],
       child: Consumer<Auth>(
         builder: (ctx, auth, _) => MaterialApp(
+          useInheritedMediaQuery: true,
+          locale: DevicePreview.locale(context),
+          builder: DevicePreview.appBuilder,
           title: "TaniKu - Go Healthy Go Life",
           debugShowCheckedModeBanner: false,
           theme: ThemeData(
@@ -82,12 +91,19 @@ class MyApp extends StatelessWidget {
           ),
           home: auth.isAuth
               ? ProductsOverviewScreen()
-              : FutureBuilder(
-                  future: auth.tryAutoLogin(),
-                  builder: (ctx, authSnapshot) =>
-                      authSnapshot.connectionState == ConnectionState.waiting
-                          ? SplashScreen()
-                          : LoginTest(),
+              : Center(
+                  child: FutureBuilder(
+                    future: auth.tryAutoLogin(),
+                    builder: (ctx, authSnapshot) {
+                      if ((authSnapshot.connectionState ==
+                              ConnectionState.waiting) ||
+                          authSnapshot.hasError) {
+                        return SplashScreen();
+                      } else {
+                        return LoginTest();
+                      }
+                    },
+                  ),
                 ),
           routes: {
             ProductDetailScreen.routeName: (ctx) => ProductDetailScreen(),
