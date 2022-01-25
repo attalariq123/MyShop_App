@@ -1,4 +1,4 @@
-# shop_app
+# TaniKu
 
 My first Flutter App.
 
